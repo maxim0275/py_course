@@ -24,7 +24,7 @@ def get_date(date_string: str) -> str:
     """
     try:
         parsed_date = parser.parse(date_string)
-        return parsed_date.strftime("%d-%m-%Y")
+        return parsed_date.strftime("%d.%m.%Y")
     except ValueError:
         print("Неправильный формат даты")
         return ""
