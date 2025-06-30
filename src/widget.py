@@ -28,3 +28,7 @@ def get_date(date_string: str) -> str:
     except ValueError:
         print("Некорректный формат даты")
         return ""
+
+    def f1():
+        pass
+
