@@ -1,4 +1,5 @@
 from dateutil import parser
+
 from src import masks
 
 
@@ -14,7 +15,7 @@ def mask_account_card(account_or_card: str) -> str:
                 result = masks.get_mask_card_number(candidat_data)
             elif len(candidat_data) == len("73654108430135874305"):
                 result = masks.get_mask_account(candidat_data)
-    return account_or_card[:len(account_or_card) - len(candidat_data)] + result
+    return account_or_card[: len(account_or_card) - len(candidat_data)] + result
 
 
 def get_date(date_string: str) -> str:
@@ -31,4 +32,3 @@ def get_date(date_string: str) -> str:
 
     def f1():
         pass
-
