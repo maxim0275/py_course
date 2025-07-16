@@ -9,9 +9,9 @@ get_mask_account - принимает на вход номер счета в в�
 
 Добавлен пакет с тестовыми модулями:
 
-test_account
-test_card_number
-test_get_date
-test_processing
+ - test_account
+ - test_card_number
+ - test_get_date
+ - test_processing
 
 Покрытие тестами составляет 92%.
