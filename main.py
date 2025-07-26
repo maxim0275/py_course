@@ -1,4 +1,4 @@
-from src.generators import filter_by_currency, transaction_descriptions
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 from src.masks import get_mask_card_number, get_mask_account
 from src.widget import get_date
 
@@ -98,3 +98,6 @@ descriptions = transaction_descriptions(transactions)
 
 for _ in range(5):
     print(next(descriptions))
+
+for card_number in card_number_generator(1, 9):
+    print(card_number)
