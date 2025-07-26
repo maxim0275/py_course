@@ -16,4 +16,22 @@ get_mask_account - принимает на вход номер счета в в�
 
 Покрытие тестами составляет 92%.
 
-1
+Добавлен новый модуль generators с функциями:
+ - filter_by_currency
+ - transaction_descriptions
+ - card_number_generator
+
+Примеры использования функций:
+
+usd_transactions = filter_by_currency(transactions, "USD")
+for _ in range(2):
+    print(next(usd_transactions))
+
+descriptions = transaction_descriptions(transactions)
+for _ in range(5):
+    print(next(descriptions))
+
+for card_number in card_number_generator(1, 5):
+    print(card_number)
+
+Созданы тесты для новых функций

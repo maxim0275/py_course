@@ -113,6 +113,7 @@ def sort_by_date_dst_list() -> list:
         {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
     ]
 
+
 @pytest.fixture
 def transactions() -> list:
     return [
@@ -193,3 +194,7 @@ def transactions() -> list:
         }
     ]
 
+
+@pytest.fixture
+def transactions_empty() -> list:
+    return []
