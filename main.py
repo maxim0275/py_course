@@ -1,4 +1,4 @@
-from src.generators import filter_by_currency
+from src.generators import filter_by_currency, transaction_descriptions
 from src.masks import get_mask_card_number, get_mask_account
 from src.widget import get_date
 
@@ -88,6 +88,13 @@ tr = transactions = (
     ]
 )
 
+from typing import Iterable
+
 usd_transactions = filter_by_currency(transactions, "USD")
-for _ in range(5):
+for _ in range(3):
     print(next(usd_transactions))
+
+descriptions = transaction_descriptions(transactions)
+
+for _ in range(5):
+    print(next(descriptions))
