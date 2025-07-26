@@ -8,7 +8,7 @@ from src.widget import get_date
 # print(get_mask_card_number("7000792289606361"))
 
 
-tr = transactions = (
+transactions = (
     [
         {
             "id": 939719570,
@@ -90,13 +90,15 @@ tr = transactions = (
 
 from typing import Iterable
 
+# transactions = []
+
 usd_transactions = filter_by_currency(transactions, "USD")
 for _ in range(3):
     print(next(usd_transactions))
 
 descriptions = transaction_descriptions(transactions)
 
-for _ in range(5):
+for _ in range(1):
     print(next(descriptions))
 
 for card_number in card_number_generator(1, 9):
