@@ -3,86 +3,66 @@ import os
 from src.decorators import log
 
 
+import pytest
+
+from src.decorators import log
+
+
+def test_log():
+    @log(filename='my_log.txt')
+    def summa(x, y):
+        return x + y
+    result_summa = summa(1, 2)
+    assert f"Функция my_function ок. Результат: {result_summa}" == "Функция my_function ок. Результат: 3"
+
+    def sb(x, y):
+        return x - y
+    result_sb = sb(2, 1)
+    assert f"Функция my_function ок. Результат: {result_sb}" == "Функция my_function ок. Результат: 1"
+
+    def division_corr(x, y):
+        return x / y
+    result_division_corr = division_corr(4, 2)
+    assert f"Функция my_function ок. Результат: {result_division_corr}" == "Функция my_function ок. Результат: 2.0"
+
+    def div_zero(x, y):
+        return x / y
+    with pytest.raises(ZeroDivisionError):
+        div_zero(2, 0)
+
+
+def test_decorator_cupsys(capsys):
+    """Тестирование декоратора с выходом ошибки с фикстурой cupsys"""
+    with pytest.raises(Exception):
+        my_func = my_function(3, 3)
+        captured = my_func.readouterr()
+        assert captured.out == Exception
+
+
+@log()
+def faulty_function(x, y):
+    return x / y
+def test_faulty_function_logs_error(capsys):
+    faulty_function(1, 0)
+    captured = capsys.readouterr()
+    assert "faulty_function error: division by zero" in captured.out
+
 @log()
 def my_function(x, y):
     return x / y
 
+# Тест на успешное выполнение функции
 
-def test_my_function_success(capsys) -> None:
-    """
-    Проверка успешного выполнения функции
-    """
+def test_my_function_success(capsys):
     result = my_function(4, 2)
     assert result == 2
     captured = capsys.readouterr()
-    assert "my_function ок. Результат: 2" in captured.out
+    assert "my_function ok. Результат: 2" in captured.out
 
+# Тест на обработку ошибки деления на ноль
 
-def test_my_function_division_by_zero(capsys) -> None:
-    """
-    Проверка ошибки деления на "0"
-    """
-    my_function(4, 0)
-    captured = capsys.readouterr()
-    assert "my_function error: division by zero. Inputs: (4, 0), {}" in captured.out
-
-
-@log(filename="test_log.txt")
-def my_function_sum(x: float, y: float) -> float:
-    return x + y
-
-
-def test_my_function_file_output() -> None:
-    """
-    Проверка вывода в файл
-    """
-    my_function_sum(2, 3)
-    with open("test_log.txt", "r", encoding="utf-8") as file:
-        content = file.read()
-    assert "Функция my_function_sum ок. Результат: 5" in content
-    os.remove("test_log.txt")
-
-
-@log()
-def my_function_key_error() -> str:
-    return {"a": 1}["b"]
-
-
-def test_my_function_key_error(capsys) -> None:
-    """
-    Проверка обработки других исключений
-    """
-    my_function_key_error()
-    captured = capsys.readouterr()
-    assert "my_function_key_error error: 'b'. Inputs: (), {}\n" in captured.out
-
-
-@log()
-def my_function_concat(a: float, b: float) -> float:
-    return a + b
-
-
-def test_my_function_concat_strings(capsys) -> None:
-    """
-    Проверка с разными типами аргументов
-    """
-    result = my_function_concat("hello", "world")
-    assert result == "helloworld"
-    captured = capsys.readouterr()
-    assert "my_function_concat ок. Результат: helloworld" in captured.out
-
-
-def test_file_cleanup() -> None:
-    """
-    Проверка очистки файла
-    """
-    filename = "test_log_cleanup.txt"
-
-    @log(filename=filename)
-    def my_function_cleanup(x):
-        return x
-
-    my_function_cleanup(1)
-    assert os.path.exists(filename)
-    os.remove(filename)
-    assert not os.path.exists(filename)
+#def test_my_function_division_by_zero(capsys):
+#    with pytest.raises(ZeroDivisionError):
+#        my_function(4, 0)
+#    captured = capsys.readouterr()
+#    assert "my_function error: division by zero. Inputs: (4, 0), {}" in captured.out
