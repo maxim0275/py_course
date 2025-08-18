@@ -37,4 +37,9 @@ def get_fin_data(path_to_file):
 
     return transactions
 
-
+def get_summ_trans(transaction):
+    """
+    принимает на вход транзакцию и возвращает
+    сумму транзакции (amount) в рублях, тип данных —float
+    """
+    return transaction
