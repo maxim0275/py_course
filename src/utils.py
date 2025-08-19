@@ -51,5 +51,5 @@ def get_summ_trans(transaction):
     else:
         amount = transaction["operationAmount"].get('amount')
 
-    res = 1
+    res = 2
     return res
