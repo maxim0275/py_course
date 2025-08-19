@@ -4,24 +4,24 @@ import requests
 from dotenv import load_dotenv
 
 
-def get_exchange_rate(currency, amount):
+def get_summ_rated(currency, amount):
     to = "RUB"
     _from = currency
     url = f"https://api.apilayer.com/exchangerates_data/convert?to={to}&from={_from}&amount={amount}"
     payload = {}
 
     load_dotenv()
-    API_KEY = os.getenv("API_KEY")
+    api_key = os.getenv("API_KEY")
 
     headers = {
-        "apikey": API_KEY
+        "apikey": api_key
     }
 
     response = requests.request("GET", url, headers=headers, data=payload)
 
-    status_code = response.status_code
-    result = response.text
+    result = 0
+    if response.status_code == 200:
+        result_json = response.json()
+        result = result_json['result']
 
-    if response.status_code != 200:
-        return False, {}
-    return 0
+    return result
