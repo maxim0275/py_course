@@ -2,6 +2,8 @@ import json
 
 import requests
 
+from src.external_api import get_exchange_rate
+
 
 def get_github_users(users):
     results = []
@@ -42,4 +44,12 @@ def get_summ_trans(transaction):
     принимает на вход транзакцию и возвращает
     сумму транзакции (amount) в рублях, тип данных —float
     """
-    return transaction
+    currency_in_tr = transaction["operationAmount"]['currency']['code']
+    amount = transaction["operationAmount"].get('amount')
+    if currency_in_tr != 'RUB':
+        amount = get_exchange_rate(currency_in_tr, amount)
+    else:
+        amount = transaction["operationAmount"].get('amount')
+
+    res = 1
+    return res
