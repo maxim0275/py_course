@@ -1,2 +1,3 @@
 # Created by coverage.py
-*.*!index.html
+*
+!index.html
