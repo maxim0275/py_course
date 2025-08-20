@@ -29,7 +29,7 @@ def get_summ_trans(transaction):
         return 0
     try:
         currency_in_transaction = transaction["operationAmount"]["currency"].get("code")
-    except Exception as e:
+    except Exception:
         print("Некорректный словарь")
         return -1
 
