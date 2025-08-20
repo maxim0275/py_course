@@ -27,7 +27,12 @@ def get_summ_trans(transaction):
     """
     if transaction == {}:
         return 0
-    currency_in_transaction = transaction["operationAmount"]["currency"].get("code")
+    try:
+        currency_in_transaction = transaction["operationAmount"]["currency"].get("code")
+    except Exception as e:
+        print("Некорректный словарь")
+        return -1
+
     amount = transaction["operationAmount"].get("amount")
     if currency_in_transaction != "RUB":
         amount = get_summ_rated(currency_in_transaction, amount)
