@@ -1,13 +1,15 @@
-from src.external_api import get_summ_rated
-from src.utils import get_fin_data, get_summ_trans
+# Определяем путь к файлам
+import os
 
-# path_to_file = "data//operations.json"
-path_to_file = "data//operations.json"
-tr = get_fin_data(path_to_file)
+from src.transaction_importer import reading_operations_from_excel, reading_operations_from_csv
 
-print(tr[74])
+root_dir = os.path.dirname(os.path.abspath(__file__))
+file1_path = os.path.join(root_dir, "data", "transactions_1.csv")
+file2_path = os.path.join(root_dir, "data", "transactions_excel.xlsx")
 
-sm = get_summ_trans(tr[95])
-print(sm)
-
-print(get_summ_rated("USe", 1))
+print(reading_operations_from_excel(file2_path))
+print("================================================================================================")
+print("================================================================================================")
+print("================================================================================================")
+print("================================================================================================")
+print(reading_operations_from_csv(file1_path))
