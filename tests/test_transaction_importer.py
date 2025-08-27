@@ -58,7 +58,7 @@ def test_reading_operations_from_csv_no_state_col():
     file1_path = os.path.join("data", "transactions.csv")
     # file1_path = os.path.join("..", "data", "transactions.csv")
     _dict = reading_operations_from_csv(file1_path)
-    assert ('state' in list(_dict[2].keys())[0])
+    assert 'state' in list(_dict[2].keys())
 
 
 @patch('pandas.read_csv')

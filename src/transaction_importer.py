@@ -8,7 +8,7 @@ def reading_operations_from_csv(file_path: str, encoding: str = "utf-8") -> list
         print("Файл не существует")
         return [{"Nothing"}]
     try:
-        dataframe = pd.read_csv(file_path, encoding=encoding, sep=';')
+        dataframe = pd.read_csv(file_path, encoding=encoding, sep=";")
         _dict = dataframe.to_dict("records")
     except Exception:
         print("Ошибка чтения файла")

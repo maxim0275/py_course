@@ -6,7 +6,7 @@ def get_mask_card_number(card_number: str) -> str:
     card_number_masked = ""
     if len(card_number) == len("7000792289606361"):
         card_number_masked = (
-            card_number[0:4] + " " + card_number[4:6] + "** **** " + card_number[len(card_number) - 4:]
+                card_number[0:4] + " " + card_number[4:6] + "** **** " + card_number[len(card_number) - 4:]
         )
     return card_number_masked
 

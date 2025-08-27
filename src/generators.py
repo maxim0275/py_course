@@ -29,10 +29,8 @@ def normalize_transaction(transaction):
     """
     Разместить обозначение валюты на первом уровне вложенности (для CSV и Excel)
     """
-    if 'currency' not in transaction:
-        transaction['operationAmount'] = {
-            "currency": {"code": transaction.pop("currency_code")}
-        }
+    if "currency" not in transaction:
+        transaction["operationAmount"] = {"currency": {"code": transaction.pop("currency_code")}}
     return transaction
 
 
