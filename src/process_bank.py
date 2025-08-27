@@ -1,11 +1,11 @@
-import os
 import re
 from collections import Counter
 
-from src.transaction_importer import reading_operations_from_excel
-
 
 def process_bank_search(data: list[dict], search: str) -> list[dict]:
+    """
+    Возвращает список словарей с вхождением заданной строки в поле description
+    """
     result = []
     result = list(filter(lambda x: re.search(search, x["description"]), data))
     return result

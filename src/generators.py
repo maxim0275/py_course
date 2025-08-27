@@ -58,11 +58,11 @@ def card_number_generator(start: int, stop: int) -> Generator[str, None, None]:
     Генератор может сгенерировать номера карт в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999.
     Генератор должен принимать начальное и конечное значения для генерации диапазона номеров."""
     if (
-            bool(isinstance(start, int))
-            and bool(isinstance(stop, int))
-            and start <= stop
-            and start >= 1
-            and stop <= 9999999999999999
+        bool(isinstance(start, int))
+        and bool(isinstance(stop, int))
+        and start <= stop
+        and start >= 1
+        and stop <= 9999999999999999
     ):
         for i in range(start, stop):
             card_number = str(i).zfill(16)
