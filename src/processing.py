@@ -20,4 +20,8 @@ def sort_by_date(data_list: list, data_key: str = "date", descending: bool = Tru
     принимает список словарей и параметр сортировки,
     возвращает новый список, отсортированный по дате (date)
     """
-    return sorted(data_list, key=lambda x: datetime.strptime(x[data_key], "%Y-%m-%dT%H:%M:%S.%f"), reverse=descending)
+
+    _format = "%Y-%m-%dT%H:%M:%S.%f"
+    if "Z" in data_list[1]["date"]:
+        _format = "%Y-%m-%dT%H:%M:%SZ"
+    return sorted(data_list, key=lambda x: datetime.strptime(x[data_key], _format), reverse=descending)

@@ -14,6 +14,7 @@ def process_bank_search(data: list[dict], search: str) -> list[dict]:
 
 root_dir = os.path.dirname(os.path.abspath(__file__))
 file2_path = os.path.join("..", "data", "operations.xlsx")
+
 dicts = reading_operations_from_excel(file2_path)
 # print(process_bank_search(dicts, "Колхоз"))
 
